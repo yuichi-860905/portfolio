@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>ストップウォッチ</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .stopwatch {
+                text-align: center;
+                margin-top: 100px;
+            }
+            #display {
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+            button {
+                margin: 0 10px;
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="stopwatch">
+            <div id="display">00:00:00</div>
+            <button id="startBtn">スタート</button>
+            <button id="stopBtn">ストップ</button>
+            <button id="resetBtn">リセット</button>
+        </div>
+
+        <script>
+            let startTime, timerInterval;
+
+            const display = document.getElementById("display");
+            const startBtn = document.getElementById("startBtn");
+            const stopBtn = document.getElementById("stopBtn");
+            const resetBtn = document.getElementById("resetBtn");
+
+            function updateTime() {
+                const elapsed = Date.now() - startTime;
+                const hours = Math.floor(elapsed / 3600000);
+                const minutes = Math.floor((elapsed % 3600000) / 60000);
+                const seconds = Math.floor((elapsed % 60000) / 1000);
+                display.textContent =
+                  String(hours).padStart(2, "0") + ":" +
+                  String(minutes).padStart(2, "0") + ":" +
+                  String(seconds).padStart(2, "0");
+            }
+
+            startBtn.addEventListener("click", () => {
+                startTime = Date.now();
+                timerInterval = setInterval(updateTime, 1000);
+            });
+
+            stopBtn.addEventListener("click", () => {
+                clearInterval(timerInterval);
+            });
+
+            resetBtn.addEventListener("click", () => {
+                clearInterval(timerInterval);
+                display.textContent = "00:00:00";
+            });
+        </script>
+    </body>
+</html>
