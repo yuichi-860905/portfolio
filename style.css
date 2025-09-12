@@ -29,20 +29,17 @@ header {
     font-size: 24px;
     cursor: pointer;
     color: #fff;
-    display: block; /*←常に表示する */
+    display: none; /*←常に表示する */
 }
 
 /* メニューを非表示にしておき、クリックで表示 */
 .nav-links {
-    display: none;
-    position: absolute;
-    top: 40px;
-    right: 0;
-    background: #333;
-    flex-direction: column;
-    padding: 10px;
-    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
     list-style: none;
+    padding: 0;
+    margin: 0;
+    background: none;
 }
 
 .nav-links.active {
@@ -50,8 +47,8 @@ header {
 }
 
 .nav-links li {
-    margin: 10px 0;
-    text-align: right;
+    margin: 0 15px;
+    text-align: center;
 }
 
 
@@ -76,10 +73,11 @@ section {
 .profile img {
     border-radius: 100%;
     display: block;
-    margin: 15px auto 15px;
-    width: 150px;
-    height: 150px;
+    margin: 30px auto 30px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
+    object-position: top;
 }
 
 .profile p {
@@ -112,6 +110,19 @@ section {
     display: block;
     margin: 10px auto;
     
+}
+
+.button input[type="submit"] {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    color: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button input[type="submit"]:hover {
+    background-color: #555;
 }
 
 /* リサイズを禁止 */
@@ -189,19 +200,19 @@ h2 {
 }
 
 .bg-hobby3 {
-    background-image: url('photo3.jpg');
+    background-image: url('photo6.jpg');
 }
 
 .bg-hobby4 {
-    background-image: url('photo4.jpg');
+    background-image: url('photo7.jpg');
 }
 
 .bg-hobby5 {
-    background-image: url('photo5.jpg');
+    background-image: url('photo8.jpg');
 }
 
 .bg-goal {
-    background-image: url('img_goal.jpeg');
+    background-image: url('img_goal2.png');
 }
 
 /* Workページ */
@@ -211,6 +222,8 @@ h2 {
     margin-bottom: 20px;
     border-radius: 10px;
     background-color: #f9f9f9;
+    width: 100%;
+    max-width: 600px;
 }
 
 .work-item a {
@@ -223,34 +236,61 @@ h2 {
 .work-item a:hover {
     text-decoration: underline;
 }
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
 /* モバイル用 */
 @media screen and (max-width: 768px) {
-    .hamburger {
-        display: block;
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #333;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin-bottom: 10px;
+  }
+
+  .nav-links li:last-child {
+    margin-bottom: 0;
+  }
+
+  .overlay p,
+  .overlay h2,
+  .overlay h3 {
+        font-size: 1rem;
+        line-height: 1.8;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .overlay {
+        padding: 1.5rem;
+        width: 90%;
     }
 
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        background: #333;
-        flex-direction: column;
-        padding: 10px;
-        border-radius: 8px;
+    .section-bg {
+        padding: 2rem 1rem;
     }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .nav-links li {
-        margin-bottom: 10px;
-    }
-
-    .nav-links li:last-child {
-        margin-bottom: 0;
-    }
+}
+    
 /* スマホ時の位置調整 */
     .section-bg,
     .section-bg h2,
@@ -267,6 +307,7 @@ h2 {
         border-radius: 10px;
         text-align: center;
     }
+    
     /* 経歴　→ 中央 */
     .bg-career {
         background-position:  center;
@@ -285,4 +326,37 @@ h2 {
     .bg-hobby4 {
         background-position: right center;
     }
+}
+
+/* PC用（幅が769px以上のとき）に横並びナビを表示 */
+@media screen and (min-width: 769px) {
+  .hamburger {
+    display: none; /* PCではハンバーガー非表示 */
+  }
+
+  .nav {
+    position: static;
+    text-align: right;
+    margin-top: -40px; /* 必要に応じて調整 */
+  }
+
+  .nav-links {
+    display: flex !important;
+    flex-direction: row;
+    position: static;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    list-style: none;
+  }
+
+  .nav-links li {
+    margin: 0 15px;
+  }
+
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
 }
