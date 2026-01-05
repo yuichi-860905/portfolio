@@ -181,6 +181,7 @@ h2 {
     text-align: center;
 }
 
+
 /* 趣味タイトル中央寄せ */
 .title-center {
     text-align: center;
@@ -289,6 +290,11 @@ section {
     .section-bg {
         padding: 2rem 1rem;
     }
+
+    .bg-hobby5 .overlay h2 {
+        align-self: flex-start;
+        text-align: left;
+    }
 }
     
 /* スマホ時の位置調整 */
@@ -359,4 +365,9 @@ section {
     text-decoration: none;
     font-weight: bold;
   }
+}
+
+/* 経歴・紹介文は左寄せ */
+.section-bg .overlay p {
+    text-align: left;
 }
